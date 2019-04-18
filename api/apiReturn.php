@@ -50,20 +50,18 @@ Class apiReturn{
               "org_dept_remove",
               "org_remove",
               "org_change",
-              "bpms_task_change",
-              "bpms_instance_change"
-             ]
+             ];
 	  }
 
 	  //回调地址注册
 	  
 	  public function register_call_back(){
-
+	  		
 	  	     $data = ['call_back_tag'=>$this->call_back_tag,"token"=>$this->token,"aes_key"=>$this->aes_key,"url"=>$this->url];
 
 	  	     $str_data = json_encode($data);
 
-             return $scopes = $this->config->post("call_back/register_call_back",['access_token'=>$this->accessToken],$str_data);
+             return $call_back = $this->config->post("call_back/register_call_back",['access_token'=>$this->accessToken],$str_data);
 
 	  }  
 
