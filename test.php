@@ -22,16 +22,30 @@ $CorpToken = $apiGetCorpToken->getCorpToken(); //获取授权凭证
 $AuthInfo  = $apiGetCorpToken->getAuthInfo(); //获取企业授权信息
 $agentid   = $AuthInfo->auth_info->agent[0]->agentid;
 
-$apiAuthentication = new apiAuthentication($http);
-$apiAuthentication->setAccessToken($CorpToken->access_token);
-$apiAuthentication->setAgentid($agentid);
-$apiAuthentication->setTimeStamp($time);
-$apiAuthentication->setCorpId("ding6d3a701eb0ad204335c2f4657eb6378f");
-$JsapiTicket = $apiAuthentication->getJsapiTicket();
-$apiAuthentication->setJsapiTicket($JsapiTicket->ticket);
-$apiAuthentication->setUrl("http://wty.vaiwan.com/test.php");
-$sign = $apiAuthentication->sign();
-$apiAuthentication->setSign($sign);
-$JsapiConfig = $apiAuthentication->getJsapiConfig();
+//配置鉴权信息
+// $apiAuthentication = new apiAuthentication($http);
+// $apiAuthentication->setAccessToken($CorpToken->access_token);
+// $apiAuthentication->setAgentid($agentid);
+// $apiAuthentication->setTimeStamp($time);
+// $apiAuthentication->setCorpId("ding6d3a701eb0ad204335c2f4657eb6378f");
+// $JsapiTicket = $apiAuthentication->getJsapiTicket();
+// $apiAuthentication->setJsapiTicket($JsapiTicket->ticket);
+// $apiAuthentication->setUrl("http://wty.vaiwan.com/test.php");
+// $sign = $apiAuthentication->sign();
+// $apiAuthentication->setSign($sign);
+// $JsapiConfig = $apiAuthentication->getJsapiConfig();
 
-print_r($JsapiConfig);die;
+
+
+
+//回调地址注册
+$apiReturn = new apiReturn($http);
+
+$apiReturn->setUrl("http://wty.vaiwan.com/return.php");
+$apiReturn->setToken("zheshijiamitoken");
+$apiReturn->setAesKey("qwertyuiopasdfghjklzxcvbnm1234567890qwertyu");
+$apiReturn->setAccessToken($CorpToken->access_token);
+$apiReturn->setCallBackTagAll();
+$call_back = $apiReturn->register_call_back();
+
+print_r($call_back);
