@@ -31,7 +31,7 @@ $http   = new Http($config);
 
  $AgentInfo = $apiGetCorpToken->getAgentInfo();  //获取授权应用信息
  
- //print_r($AgentInfo);die;
+
 
  $apiGetDepartment = new apiGetDepartment($http);
 
@@ -47,11 +47,11 @@ $http   = new Http($config);
  
 
  $apiGetUser = new apiGetUser($http);
+ $apiGetUser->setAccessToken($CorpToken->access_token);
 
- $apiGetUser->accessToken = $CorpToken->access_token;
-
+ 
  $authed_dept =$deptInfoData['authed_dept'];
-
+ 
  $user_list = [];
 
  foreach($authed_dept as $key=>$val){
