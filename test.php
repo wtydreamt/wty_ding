@@ -45,7 +45,7 @@ $apiReturn->setUrl("http://wty.vaiwan.com/return.php");
 $apiReturn->setToken("zheshijiamitoken");
 $apiReturn->setAesKey("qwertyuiopasdfghjklzxcvbnm1234567890qwertyu");
 $apiReturn->setAccessToken($CorpToken->access_token);
-$apiReturn->setCallBackTagAll();
-$call_back = $apiReturn->register_call_back();
+$apiReturn->setCallBackTagOne(['org_change']);
+$call_back = $apiReturn->get_call_back();
 
 print_r($call_back);
