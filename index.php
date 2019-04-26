@@ -21,10 +21,11 @@ $http   = new Http($config);
  $apiGetCorpToken->setSignature();
 
  $CorpToken = $apiGetCorpToken->getCorpToken();  //获取授权凭证
- 
+
  
  $AuthInfo  = $apiGetCorpToken->getAuthInfo();   //获取企业授权信息
 
+ print_r($AuthInfo);die;
 
  $apiGetCorpToken->agentid = $AuthInfo->auth_info->agent[0]->agentid;
 
